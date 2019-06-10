@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 
 // Connect to mongoose
 mongoose
-  .connect('mongodb://localhost/vidjotdev', { useNewUrlParser: true })
+  .connect('mongodb://localhost/vidjot-dev', { useNewUrlParser: true })
   .then(() => console.log('mongoDb Connected...'))
   .catch(err => console.log(err));
 
@@ -64,7 +64,13 @@ app.post('/ideas', (req, res) => {
       details: req.body.details
     });
   } else {
-    res.send('passed');
+    const newUser = {
+      title: req.body.title,
+      details: req.body.details
+    };
+    new Idea(newUser).save().then(idea => {
+      res.redirect('/ideas');
+    });
   }
 });
 
