@@ -25,16 +25,19 @@ app.set('view engine', 'handlebars');
 // Index Route
 app.get('/', (req, res) => {
   const title = 'Welcome1';
-  console.log(req.name);
-  // Sends somethign to the browser
   res.render('index', {
     title: title
   });
 });
 
+// About Route
 app.get('/about', (req, res) => {
-  // Sends somethign to the browser
   res.render('about');
+});
+
+// Add Idea Route
+app.get('/ideas/add', (req, res) => {
+  res.render('ideas/add');
 });
 
 const port = 5000;
