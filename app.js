@@ -3,12 +3,11 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 5000;
 
 // Connect to mongoose
 mongoose
-  .connect(`mongodb://localhost:${port}/vidjot.dev`, {
-    useNewUrlParser: true
+  .connect('mongodb://localhost/vidjot.dev', {
+    useMongoClient: true
   })
   .then(() => console.log('mongoDb Connected...'))
   .catch(err => console.log(err));
@@ -31,6 +30,8 @@ app.get('/about', (req, res) => {
   // Sends somethign to the browser
   res.render('about');
 });
+
+const port = 5000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
